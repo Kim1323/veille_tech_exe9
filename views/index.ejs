@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Application</title>
+</head>
+<body>
+  Node.js, Express et MongoDB.
+    <form action="/adresse" method="POST">
+    <input type="text" placeholder="Nom" name="nom">
+    <input type="text" placeholder="Prénom" name="prenom">
+    <br/>
+    <input type="text" placeholder="Téléphone" name="telephone">
+    <br/>
+    <input type="text" placeholder="Ville" name="ville">
+    <input type="text" placeholder="Code Postal" name="codePostal">
+    <br/>
+    <button type="submit">Submit</button>
+  </form>
+
+  <ul class="adresse">
+  <% for(var i=0; i<adresse.length; i++) {%>
+    <li class="client">
+      <span><%= adresse[i].nom %></span>
+      <span><%= adresse[i].prenom %></span>
+      <span><%= adresse[i].telephone %></span>
+      <span><%= adresse[i].ville %></span>
+      <span><%= adresse[i].codePostal %></span>
+    </li>
+  <% } %>
+  </ul>
+  <script type="text/javascript" src="modifier_adresse.js"></script>
+
+</body>
+</html>
