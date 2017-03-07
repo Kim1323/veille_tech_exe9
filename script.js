@@ -17,21 +17,14 @@ MongoClient.connect('mongodb://127.0.0.1:27017/carnet_adresse', (err, database) 
 })
 
 
-
-
-
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
- 
     var cursor = db.collection('adresse').find().toArray(function(err, resultat){
        if (err) return console.log(err)
     // renders index.ejs
     // affiche le contenu de la BD
     res.render('index.ejs', {adresse: resultat})
-
     }) 
-    
-
 })
 
 
@@ -45,7 +38,17 @@ app.post('/adresse',  (req, res) => {
   db.collection('adresse').save(req.body, (err, result) => {
       if (err) return console.log(err)
       console.log('sauvegarder dans la BD')
+        console.log(db.collection('adresse'));
       res.redirect('/')
     })
 })
 
+app.get('/detruire/:id', (req, res) => {
+  var id = req.params.id
+  console.log(id)
+  db.collection('adresse')
+  .findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
+    if (err) return console.log(err)
+    res.redirect('/')  // redirige vers la route qui affiche la collection
+  })
+})
